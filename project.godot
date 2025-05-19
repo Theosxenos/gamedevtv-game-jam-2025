@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameDevTV Game Jam 2025"
-run/main_scene="uid://c72nua3260g6o"
+run/main_scene="uid://cw3y4mh44kf6w"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
