@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://du5nn0cxrtj2p"]
+
+[ext_resource type="Shader" uid="uid://faqtsiuwg0td" path="res://scenes/resources/gold_resource.gdshader" id="1_ih1c3"]
+[ext_resource type="Texture2D" uid="uid://dh1ci8uiyi0tc" path="res://scenes/resources/06.png" id="1_w10kx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rssrk"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aj54t"]
+shader = ExtResource("1_ih1c3")
+
+[node name="GoldResource" type="StaticBody2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_rssrk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_aj54t")
+scale = Vector2(1.00424, 1)
+texture = ExtResource("1_w10kx")

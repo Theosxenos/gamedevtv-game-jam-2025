@@ -2,6 +2,7 @@
 .godot/
 /android/
 
+*.aseprite
 
 .vscode
 .idea
