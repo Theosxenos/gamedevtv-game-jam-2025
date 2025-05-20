@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://uwww8wkvneoj"]
+[gd_scene load_steps=11 format=4 uid="uid://uwww8wkvneoj"]
 
 [ext_resource type="Script" uid="uid://b7s8ji61yam51" path="res://scripts/world.gd" id="1_1fp7r"]
 [ext_resource type="Texture2D" uid="uid://cpjafse0q8l5e" path="res://scenes/world/Ground/Tilemap_Flat.png" id="1_dphjl"]
 [ext_resource type="Texture2D" uid="uid://bnfhbo638qi62" path="res://scenes/world/Water/Water.png" id="2_sl2e5"]
 [ext_resource type="Script" uid="uid://xivf4473exw7" path="res://scripts/grid.gd" id="4_6m72w"]
+[ext_resource type="PackedScene" uid="uid://dj86fgpr51txl" path="res://scenes/buildings/castle/castle.tscn" id="5_v5dby"]
+[ext_resource type="PackedScene" uid="uid://du5nn0cxrtj2p" path="res://scenes/resources/gold_resource.tscn" id="6_t5ptc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sl2e5"]
 texture = ExtResource("1_dphjl")
@@ -58,6 +60,7 @@ sources/1 = SubResource("TileSetAtlasSource_1fp7r")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_1fp7r")
+resource_scene = ExtResource("6_t5ptc")
 
 [node name="Terrain" type="TileMapLayer" parent="."]
 z_index = -1
@@ -72,11 +75,14 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAA
 tile_set = SubResource("TileSet_6m72w")
 
 [node name="Grid" type="Node2D" parent="."]
+position = Vector2(192, 192)
 script = ExtResource("4_6m72w")
 grid_color = Color(0.717645, 0.9983, 0.703037, 1)
 
 [node name="Start" type="Marker2D" parent="Grid"]
-position = Vector2(192, 192)
 
 [node name="End" type="Marker2D" parent="Grid"]
-position = Vector2(704, 704)
+position = Vector2(512, 512)
+
+[node name="Castle" parent="Grid" instance=ExtResource("5_v5dby")]
+position = Vector2(256, 256)

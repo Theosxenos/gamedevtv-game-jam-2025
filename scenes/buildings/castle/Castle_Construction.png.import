@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs2fthxrdextc"
-path="res://.godot/imported/Castle_Destroyed.png-b5dc0d25d7285528a4cdf804b2a8952e.ctex"
+uid="uid://ctyhtky5g1yt0"
+path="res://.godot/imported/Castle_Construction.png-62868192435bc64bede2c301b1761cc7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/Castle/Castle_Destroyed.png"
-dest_files=["res://.godot/imported/Castle_Destroyed.png-b5dc0d25d7285528a4cdf804b2a8952e.ctex"]
+source_file="res://scenes/buildings/castle/Castle_Construction.png"
+dest_files=["res://.godot/imported/Castle_Construction.png-62868192435bc64bede2c301b1761cc7.ctex"]
 
 [params]
 

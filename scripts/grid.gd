@@ -1,4 +1,4 @@
-extends Node2D
+class_name Grid extends Node2D
 
 @export var cell_size := Vector2(64,64)
 @export var grid_color := Color(0.2, 0.2, 0.2)
