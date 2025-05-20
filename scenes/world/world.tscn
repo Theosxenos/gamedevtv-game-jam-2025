@@ -86,3 +86,7 @@ position = Vector2(512, 512)
 
 [node name="Castle" parent="Grid" instance=ExtResource("5_v5dby")]
 position = Vector2(256, 256)
+
+[node name="GoldResource" parent="Grid" instance=ExtResource("6_t5ptc")]
+visible = false
+position = Vector2(480, 32)
