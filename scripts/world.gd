@@ -5,6 +5,17 @@ extends Node2D
 @export var max_resources := 4
 @export var resource_scene: PackedScene
 @export var used_grid_cells: Array[Vector2]
+@export var is_building: bool
+@export var selected_building: Area2D
+
+var buildings: Dictionary = {
+								"mine": preload("res://scenes/buildings/gold_mine/gold_mine.tscn"),
+								"warrior": preload("res://scenes/buildings/warrior/warrior.tscn")
+							}
+var building_blueprints: Dictionary = {
+								"mine": preload("res://scenes/buildings/blue_prints/gold_mine/gold_mine_bp.tscn"),
+								"warrior": preload("res://scenes/buildings/blue_prints/warrior/warrior_bp.tscn")
+							}
 
 @onready var grid_ref: Grid = $Grid
 
@@ -22,6 +33,14 @@ func _ready() -> void:
 	
 	spawn_resources()
 
+	
+func _input(event: InputEvent) -> void:
+	if not is_building:
+		return
+	
+	if event is InputEventMouseMotion:
+		selected_building.global_position = event.position
+	
 
 func _generate_coordinates() -> Vector2:
 	while true:
@@ -53,3 +72,15 @@ func spawn_resources() -> void:
 
 		used_grid_cells.append(cell_vector)
 		num_resources -= 1
+		
+		
+func build_building(building_name: String):
+	if is_building:
+		selected_building.hide()
+		selected_building.queue_free()
+	else:
+		is_building = true
+	
+	selected_building = building_blueprints[building_name].instantiate()
+	selected_building.global_position = get_viewport().get_mouse_position()
+	add_child(selected_building)

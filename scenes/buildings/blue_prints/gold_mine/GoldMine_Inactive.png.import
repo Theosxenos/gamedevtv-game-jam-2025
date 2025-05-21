@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw0al3o1us7nt"
-path="res://.godot/imported/Warrior_Blue.png-e542364cfbf5216f446ccde19720fec8.ctex"
+uid="uid://kmnobtreixl5"
+path="res://.godot/imported/GoldMine_Inactive.png-54f8a6689f95fef06be90dd366fcec5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png"
-dest_files=["res://.godot/imported/Warrior_Blue.png-e542364cfbf5216f446ccde19720fec8.ctex"]
+source_file="res://scenes/buildings/blue_prints/gold_mine/GoldMine_Inactive.png"
+dest_files=["res://.godot/imported/GoldMine_Inactive.png-54f8a6689f95fef06be90dd366fcec5e.ctex"]
 
 [params]
 

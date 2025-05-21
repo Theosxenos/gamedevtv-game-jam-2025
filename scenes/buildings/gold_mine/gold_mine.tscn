@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cis7qgq7xve6y"]
+
+[ext_resource type="Texture2D" uid="uid://s1nomr0ota28" path="res://scenes/buildings/gold_mine/GoldMine_Active.png" id="1_5o43c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2gog"]
+size = Vector2(64, 64)
+
+[node name="GoldMine" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_5o43c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_c2gog")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

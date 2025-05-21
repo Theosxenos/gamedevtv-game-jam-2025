@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://uwww8wkvneoj"]
+[gd_scene load_steps=13 format=4 uid="uid://uwww8wkvneoj"]
 
 [ext_resource type="Script" uid="uid://b7s8ji61yam51" path="res://scripts/world.gd" id="1_1fp7r"]
 [ext_resource type="Texture2D" uid="uid://cpjafse0q8l5e" path="res://scenes/world/Ground/Tilemap_Flat.png" id="1_dphjl"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://xivf4473exw7" path="res://scripts/grid.gd" id="4_6m72w"]
 [ext_resource type="PackedScene" uid="uid://dj86fgpr51txl" path="res://scenes/buildings/castle/castle.tscn" id="5_v5dby"]
 [ext_resource type="PackedScene" uid="uid://du5nn0cxrtj2p" path="res://scenes/resources/gold_resource.tscn" id="6_t5ptc"]
+[ext_resource type="PackedScene" uid="uid://cis7qgq7xve6y" path="res://scenes/buildings/gold_mine/gold_mine.tscn" id="7_bq33v"]
+[ext_resource type="PackedScene" uid="uid://do3kxpiiqgpc2" path="res://scenes/buildings/warrior/warrior.tscn" id="8_j2gmx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sl2e5"]
 texture = ExtResource("1_dphjl")
@@ -88,5 +90,13 @@ position = Vector2(512, 512)
 position = Vector2(256, 256)
 
 [node name="GoldResource" parent="Grid" instance=ExtResource("6_t5ptc")]
-visible = false
 position = Vector2(480, 32)
+
+[node name="GoldResource" parent="Grid/GoldResource" instance=ExtResource("6_t5ptc")]
+position = Vector2(480, 32)
+
+[node name="GoldMine" parent="Grid" instance=ExtResource("7_bq33v")]
+position = Vector2(416, 32)
+
+[node name="Warrior" parent="Grid" instance=ExtResource("8_j2gmx")]
+position = Vector2(32, 32)
