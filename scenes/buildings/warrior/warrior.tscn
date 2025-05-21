@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://do3kxpiiqgpc2"]
+
+[ext_resource type="Texture2D" uid="uid://cw0al3o1us7nt" path="res://scenes/buildings/warrior/Warrior_Blue.png" id="1_kau3u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqvv3"]
+size = Vector2(64, 64)
+
+[node name="Warrior" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_kau3u")
+hframes = 6
+vframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aqvv3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
