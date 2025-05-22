@@ -7,6 +7,7 @@ extends Node2D
 @export var used_grid_cells: Array[Vector2]
 @export var is_building: bool
 @export var selected_building: BuildingBlueprint
+@export var selected_building_name: String
 
 var buildings: Dictionary = {
 								"mine": preload("res://scenes/buildings/gold_mine/gold_mine.tscn"),
@@ -43,7 +44,7 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and event.pressed:
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
-				print("Left mouse button")
+				place_building()
 			MOUSE_BUTTON_RIGHT:
 				_cancel_build_mode()
 
@@ -94,5 +95,18 @@ func build_building(building_name: String):
 		is_building = true
 	
 	selected_building = building_blueprints[building_name].instantiate()
+	selected_building_name = building_name
+	
 	grid_ref.add_child(selected_building)
 	selected_building.set_bp_position(grid_ref.global_position - get_viewport().get_mouse_position()) # TODO probably reverse
+
+	
+func place_building() -> void:
+	if not selected_building.can_place:
+		return
+	
+	var building: StaticBody2D = buildings[selected_building_name].instantiate()
+	building.position = selected_building.position
+	
+	grid_ref.add_child(building)
+	_cancel_build_mode()

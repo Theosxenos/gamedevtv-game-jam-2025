@@ -1,13 +1,17 @@
 class_name BuildingBlueprint extends Area2D
 
+@export var can_place: bool
 
 @onready var parent: Grid = get_parent()
 
 func _physics_process(_delta: float) -> void:
-	if has_overlapping_bodies():
+	if not has_overlapping_areas() or has_overlapping_bodies():
+		can_place = false
 		modulate = Color.RED
-	else:
-		modulate = Color.GREEN
+		return
+	
+	can_place = true
+	modulate = Color.GREEN
 
 
 

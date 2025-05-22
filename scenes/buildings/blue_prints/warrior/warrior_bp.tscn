@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cw0al3o1us7nt" path="res://scenes/buildings/warrior/Warrior_Blue.png" id="1_ywraj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqvv3"]
-size = Vector2(64, 64)
+size = Vector2(63, 63)
 
 [node name="Warrior" type="Area2D"]
+modulate = Color(1, 0, 0, 1)
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_27sa6")
