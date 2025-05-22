@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://gj4hc7kqsanm"]
+[gd_scene load_steps=4 format=3 uid="uid://gj4hc7kqsanm"]
 
+[ext_resource type="Script" uid="uid://dwdbt2lfgjb42" path="res://scripts/building_blueprint.gd" id="1_n6dyr"]
 [ext_resource type="Texture2D" uid="uid://kmnobtreixl5" path="res://scenes/buildings/blue_prints/gold_mine/GoldMine_Inactive.png" id="1_q6tw3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2gog"]
 size = Vector2(64, 64)
 
 [node name="GoldMine" type="Area2D"]
-collision_layer = 2
-collision_mask = 6
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_n6dyr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)

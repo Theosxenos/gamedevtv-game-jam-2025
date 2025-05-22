@@ -6,7 +6,7 @@ extends Node2D
 @export var resource_scene: PackedScene
 @export var used_grid_cells: Array[Vector2]
 @export var is_building: bool
-@export var selected_building: Area2D
+@export var selected_building: BuildingBlueprint
 
 var buildings: Dictionary = {
 								"mine": preload("res://scenes/buildings/gold_mine/gold_mine.tscn"),
@@ -39,9 +39,21 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if event is InputEventMouseMotion:
-		selected_building.global_position = event.position
-	
+		selected_building.set_bp_position(event.position - grid_ref.global_position)
+	elif event is InputEventMouseButton and event.pressed:
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				print("Left mouse button")
+			MOUSE_BUTTON_RIGHT:
+				_cancel_build_mode()
 
+
+func _cancel_build_mode() -> void:
+	is_building = false
+	selected_building.hide()
+	selected_building.queue_free()
+			
+		
 func _generate_coordinates() -> Vector2:
 	while true:
 		var cell_vector := Vector2(randi_range(0, 7), randi_range(0, 7))
@@ -82,5 +94,5 @@ func build_building(building_name: String):
 		is_building = true
 	
 	selected_building = building_blueprints[building_name].instantiate()
-	selected_building.global_position = get_viewport().get_mouse_position()
-	add_child(selected_building)
+	grid_ref.add_child(selected_building)
+	selected_building.set_bp_position(grid_ref.global_position - get_viewport().get_mouse_position()) # TODO probably reverse
