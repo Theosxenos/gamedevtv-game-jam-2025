@@ -1,12 +1,12 @@
 class_name Ship extends CharacterBody2D
 
 signal returning()
+signal unloading(spawn_direction: Vector2, spawn_position: Vector2)
 
 enum States {MOVING, UNLOADING}
 
 @export var speed := 35.0
 @export var direction := Vector2.ZERO
-@export var goblin_scene : PackedScene = preload("uid://brlvn56mjcub")
 @export var can_unload := true
 
 var current_state := States.MOVING
@@ -40,9 +40,17 @@ func move_away() -> void:
 func unload() -> void:
 	current_state = States.UNLOADING
 	
-	var goblin: Goblin = goblin_scene.instantiate()
-	goblin.global_position = global_position + Vector2(0, 32)
-	get_parent().add_child(goblin)
+	var cell_size := Vector2(64, 64)
+	
+	var spawn_position := global_position + direction * cell_size
+	# Adjust to the center of the cell
+	spawn_position = Vector2(
+		floor(spawn_position.x / cell_size.x) * cell_size.x + cell_size.x / 2,
+		floor(spawn_position.y / cell_size.y) * cell_size.y + cell_size.y / 2
+	)
+	
+	unloading.emit(direction, spawn_position)
+	
 	can_unload = false
 
 	move_away()

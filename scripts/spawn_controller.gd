@@ -4,6 +4,8 @@ class_name SpawnController extends Node
 @export var spawn_location_scene: PackedScene = preload("uid://dmhsn1ju4haeh")
 @export var spawn_locations: Array[SpawnLocation]
 
+@export var goblin_scene: PackedScene = preload("uid://brlvn56mjcub")
+
 @onready var spawn_timer: Timer = $SpawnTimer
 
 # Direction configurations for each side
@@ -42,6 +44,7 @@ func _create_locations(ship_degrees: int, ship_direction: Vector2, offset_direct
 		location.position += offset_direction * i * SPACING
 		location.ship_direction = ship_direction
 		location.ship_rotation = ship_degrees
+		location.ship_unloading.connect(_ship_unloading)
 		
 		locations.append(location)
 	
@@ -61,3 +64,10 @@ func _attempt_spawn() -> bool:
 			return true
 	
 	return false
+
+func _ship_unloading(spawn_direction: Vector2, spawn_position: Vector2) -> void:
+	var goblin: Goblin = goblin_scene.instantiate()
+	goblin.direction = spawn_direction
+	goblin.global_position = spawn_position
+	
+	add_child(goblin)	

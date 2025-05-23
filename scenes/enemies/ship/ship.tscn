@@ -20,7 +20,6 @@ shape = SubResource("RectangleShape2D_2ii7x")
 one_way_collision = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-process_mode = 4
 rect = Rect2(-10, -45, 22, 5)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

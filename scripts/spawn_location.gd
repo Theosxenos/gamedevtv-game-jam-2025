@@ -1,5 +1,7 @@
 class_name SpawnLocation extends Node2D
 
+signal ship_unloading(spawn_direction: Vector2, spawn_position: Vector2)
+
 enum States {SPAWNING, SPAWNED, RETURNING, IDLE}
 
 @export var ship_scene: PackedScene = preload("uid://dhvh5ybbmrunr")
@@ -32,6 +34,7 @@ func spawn() -> void:
 	ship.direction = ship_direction
 	ship.rotation_degrees = ship_rotation
 	ship.returning.connect(func (): current_state = States.IDLE)
+	ship.unloading.connect(func (dir: Vector2, pos: Vector2): ship_unloading.emit(dir, pos))
 	
 	add_child(ship)
 
