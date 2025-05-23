@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://xivf4473exw7" path="res://scripts/grid.gd" id="4_6m72w"]
 [ext_resource type="PackedScene" uid="uid://dj86fgpr51txl" path="res://scenes/buildings/castle/castle.tscn" id="5_v5dby"]
 [ext_resource type="PackedScene" uid="uid://du5nn0cxrtj2p" path="res://scenes/resources/gold_resource.tscn" id="6_t5ptc"]
-[ext_resource type="Script" uid="uid://dtadu0p78mgbq" path="res://scripts/boat_spawners.gd" id="7_1yooq"]
+[ext_resource type="Script" uid="uid://y5ww1pps8873" path="res://scripts/spawn_controller.gd" id="7_bq33v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sl2e5"]
 texture = ExtResource("1_dphjl")
@@ -102,7 +102,7 @@ position = Vector2(256, 256)
 shape = SubResource("RectangleShape2D_j2gmx")
 
 [node name="SpawnController" type="Node" parent="."]
-script = ExtResource("7_1yooq")
+script = ExtResource("7_bq33v")
 
 [node name="NorthSpawnStart" type="Marker2D" parent="SpawnController"]
 position = Vector2(224, -64)
@@ -119,6 +119,5 @@ position = Vector2(224, 960)
 [node name="SpawnTimer" type="Timer" parent="SpawnController"]
 wait_time = 3.0
 one_shot = true
-autostart = true
 
 [connection signal="timeout" from="SpawnController/SpawnTimer" to="SpawnController" method="_on_spawn_timer_timeout"]
