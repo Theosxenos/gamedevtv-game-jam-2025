@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://uwww8wkvneoj"]
+[gd_scene load_steps=13 format=4 uid="uid://uwww8wkvneoj"]
 
 [ext_resource type="Script" uid="uid://b7s8ji61yam51" path="res://scripts/world.gd" id="1_1fp7r"]
 [ext_resource type="Texture2D" uid="uid://cpjafse0q8l5e" path="res://scenes/world/Ground/Tilemap_Flat.png" id="1_dphjl"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://xivf4473exw7" path="res://scripts/grid.gd" id="4_6m72w"]
 [ext_resource type="PackedScene" uid="uid://dj86fgpr51txl" path="res://scenes/buildings/castle/castle.tscn" id="5_v5dby"]
 [ext_resource type="PackedScene" uid="uid://du5nn0cxrtj2p" path="res://scenes/resources/gold_resource.tscn" id="6_t5ptc"]
-[ext_resource type="PackedScene" uid="uid://dhvh5ybbmrunr" path="res://scenes/enemies/ship/ship.tscn" id="7_bq33v"]
+[ext_resource type="Script" uid="uid://dtadu0p78mgbq" path="res://scripts/boat_spawners.gd" id="7_1yooq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sl2e5"]
 texture = ExtResource("1_dphjl")
@@ -72,13 +72,6 @@ sources/1 = SubResource("TileSetAtlasSource_1fp7r")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2gmx"]
 size = Vector2(512, 512)
 
-[sub_resource type="Curve2D" id="Curve2D_t5ptc"]
-bake_interval = 32.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -32, -32, 0, 0, 0, 0, 928, -32, 0, 0, 0, 0, 928, 928, 0, 0, 0, 0, -32, 928, 0, 0, 0, 0, -32, -32)
-}
-point_count = 5
-
 [node name="World" type="Node2D"]
 script = ExtResource("1_1fp7r")
 resource_scene = ExtResource("6_t5ptc")
@@ -108,14 +101,24 @@ position = Vector2(256, 256)
 position = Vector2(256, 256)
 shape = SubResource("RectangleShape2D_j2gmx")
 
-[node name="EnemeSpawnLocations" type="Path2D" parent="."]
-curve = SubResource("Curve2D_t5ptc")
+[node name="SpawnController" type="Node" parent="."]
+script = ExtResource("7_1yooq")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="EnemeSpawnLocations"]
-position = Vector2(-32, -32)
-rotation = -1.5708
-progress = 3840.0
+[node name="NorthSpawnStart" type="Marker2D" parent="SpawnController"]
+position = Vector2(224, -64)
 
-[node name="Ship" parent="." instance=ExtResource("7_bq33v")]
-position = Vector2(224, 32)
-direction = Vector2(0, 1)
+[node name="WestSpawnStart" type="Marker2D" parent="SpawnController"]
+position = Vector2(-64, 224)
+
+[node name="EastSpawnStart" type="Marker2D" parent="SpawnController"]
+position = Vector2(960, 224)
+
+[node name="SouthSpawnStart" type="Marker2D" parent="SpawnController"]
+position = Vector2(224, 960)
+
+[node name="SpawnTimer" type="Timer" parent="SpawnController"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="SpawnController/SpawnTimer" to="SpawnController" method="_on_spawn_timer_timeout"]
