@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://do3kxpiiqgpc2"]
+[gd_scene load_steps=4 format=3 uid="uid://do3kxpiiqgpc2"]
 
+[ext_resource type="Script" uid="uid://c4sebr06tv62c" path="res://scripts/building.gd" id="1_aqvv3"]
 [ext_resource type="Texture2D" uid="uid://cw0al3o1us7nt" path="res://scenes/buildings/warrior/Warrior_Blue.png" id="1_kau3u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqvv3"]
@@ -8,6 +9,8 @@ size = Vector2(64, 64)
 [node name="Warrior" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 6
+script = ExtResource("1_aqvv3")
+building_type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.6, 0.6)

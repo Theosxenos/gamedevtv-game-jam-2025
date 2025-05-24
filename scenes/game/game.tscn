@@ -15,4 +15,6 @@ offset_top = 824.0
 offset_right = 417.0
 offset_bottom = 824.0
 
+[connection signal="building_placed" from="World" to="." method="_on_world_building_placed"]
+[connection signal="resource_changed" from="World" to="." method="_on_world_resource_changed"]
 [connection signal="build" from="BuildMenu" to="." method="_on_build_menu_build"]

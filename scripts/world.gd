@@ -1,6 +1,9 @@
 class_name World
 extends Node2D
 
+signal building_placed(building: Building)
+signal resource_changed(total_resoource_amount: int)
+
 @export var min_resources := 2
 @export var max_resources := 4
 @export var resource_scene: PackedScene
@@ -19,7 +22,7 @@ var building_blueprints: Dictionary = {
 							}
 
 @onready var grid_ref: Grid = $Grid
-
+@onready var building_controller: BuildingController = $BuildingController
 
 func _ready() -> void:
 	if resource_scene == null:
@@ -105,8 +108,13 @@ func place_building() -> void:
 	if not selected_building.can_place:
 		return
 	
-	var building: StaticBody2D = buildings[selected_building_name].instantiate()
+	var building: Building = buildings[selected_building_name].instantiate()
 	building.position = selected_building.position
 	
 	grid_ref.add_child(building)
 	_cancel_build_mode()
+	building_placed.emit(building)
+
+
+func _on_building_controller_resource_changed(resource_amount: int) -> void:
+	resource_changed.emit(resource_amount)
