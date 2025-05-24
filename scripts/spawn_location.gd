@@ -37,6 +37,5 @@ func spawn() -> void:
 	ship.unloading.connect(func (dir: Vector2, pos: Vector2): ship_unloading.emit(dir, pos))
 	
 	add_child(ship)
-
-	print("spawning from %s with coordinates %s" % [name, ship.position])
+	
 	current_state = States.SPAWNED
