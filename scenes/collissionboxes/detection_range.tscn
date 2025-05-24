@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsurkenbxauoh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5u1ml"]
+size = Vector2(192, 192)
+
+[node name="DetectionRange" type="Area2D"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5u1ml")
+debug_color = Color(1, 0.918667, 0.39, 0.419608)

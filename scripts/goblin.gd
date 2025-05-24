@@ -1,5 +1,7 @@
 class_name Goblin extends CharacterBody2D
 
+signal died()
+
 @export var speed := 30.0
 @export var direction := Vector2.ZERO
 

@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://do3kxpiiqgpc2"]
+[gd_scene load_steps=15 format=3 uid="uid://do3kxpiiqgpc2"]
 
 [ext_resource type="Script" uid="uid://c4sebr06tv62c" path="res://scripts/building.gd" id="1_aqvv3"]
 [ext_resource type="Texture2D" uid="uid://cw0al3o1us7nt" path="res://scenes/buildings/warrior/Warrior_Blue.png" id="1_kau3u"]
+[ext_resource type="PackedScene" uid="uid://bhnirhnu8qqs1" path="res://scenes/collissionboxes/hurtbox.tscn" id="3_5ba4g"]
+[ext_resource type="PackedScene" uid="uid://ywe63a87v137" path="res://scenes/collissionboxes/hitbox.tscn" id="4_5u1ml"]
+[ext_resource type="PackedScene" uid="uid://dsurkenbxauoh" path="res://scenes/collissionboxes/detection_range.tscn" id="5_5u1ml"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqvv3"]
 size = Vector2(64, 64)
@@ -107,6 +110,12 @@ _data = {
 &"attack_up": SubResource("Animation_hvutm")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjlem"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ba4g"]
+size = Vector2(63, 63)
+
 [node name="Warrior" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 6
@@ -116,6 +125,7 @@ building_type = 1
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_kau3u")
+flip_h = true
 hframes = 6
 vframes = 8
 
@@ -126,3 +136,28 @@ shape = SubResource("RectangleShape2D_aqvv3")
 libraries = {
 &"": SubResource("AnimationLibrary_vjjmj")
 }
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_5ba4g")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("RectangleShape2D_xjlem")
+debug_color = Color(0, 1, 0, 1)
+
+[node name="Hitbox" parent="." instance=ExtResource("4_5u1ml")]
+position = Vector2(64, 0)
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_5ba4g")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="DetectionRange" parent="." instance=ExtResource("5_5u1ml")]
+collision_layer = 0
+collision_mask = 4
+
+[connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
+[connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
+[editable path="DetectionRange"]
