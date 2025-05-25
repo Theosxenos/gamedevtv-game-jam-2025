@@ -4,6 +4,8 @@ signal died()
 
 @export var speed := 30.0
 @export var direction := Vector2.ZERO
+@export var health := 2
+@export var attack_damage := 1
 
 
 func _ready() -> void:
@@ -13,3 +15,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	velocity = direction * speed
 	var collission = move_and_slide()
+
+
+func take_hit(damage: int) -> void:
+	health -= damage
